@@ -7,14 +7,12 @@ logging.basicConfig(level=logging.INFO)
 logger=logging.getLogger(__name__)
 
 class HttpClient:
-    def __init__(self):
-        self.session = requests.Session()
+    def __init__(self, session : requests.Session):
+        self.session = session
 
     def handle_request(self, 
                        method : str,
                        url: str,
-                       timeout: int,
-                       retry_attempts: int,
                        headers: Optional[Dict[str, Any]] = Any,
                        body: Optional[str] = None) -> Dict[str, Any]:
         
