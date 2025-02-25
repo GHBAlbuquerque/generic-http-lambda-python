@@ -6,8 +6,6 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from src.client.http_client import HttpClient
 
-import boto3
-
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -36,6 +34,8 @@ def handle_request(event, context):
 
         logger.info(f"Response: {response}")
         logger.info(f"Response handled sucessfully. Response status code: {response.get('status_code')}")
+
+        return response
 
     except requests.Exception as e:
         logger.error("An error occurred while handling request", exc_info=True)
