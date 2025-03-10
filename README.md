@@ -1,5 +1,5 @@
 # DynamoDB Generic HTTP Request Maker
-# generic-http-lambda-python
+# generic-http-lambda-python 💻
 Small project of a generic http request maker. It receives a 'request input' and makes a request using parameter values.
 
 This code is meant to be used on a Lambda function. The handler input is an event with three main informations:
@@ -33,7 +33,7 @@ JSON payload:
 
 Using the 'requests' HTTP library, the lambda function makes a request to the desired URL. The function will retry the request if it fails, up to the number of desired retries.
 
-## Local Testing
+## Local Testing 
 
 Necessary tools:
 
