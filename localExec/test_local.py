@@ -9,11 +9,12 @@ from src.client.http_client import HttpClient
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def handle_request(event, context):
+
+def local_handler(event):
     url = event.get('url')
-    correlation_id=event.get('correlation_id')
-    timeout=event.get('timeout', 10) # default 10 seconds
-    retry_attempts=event.get('retry_attempts', 3) # default 3 attempts
+    correlation_id = event.get('correlation_id')
+    timeout = event.get('timeout', 10)  # default 10 seconds
+    retry_attempts = event.get('retry_attempts', 3)  # default 3 attempts
 
     logger.info(f"Handling request with correlation_id: {correlation_id}")
 
@@ -26,10 +27,10 @@ def handle_request(event, context):
     # Create an HttpClient instance
     client = HttpClient(request_session)
 
-    try: 
-        response = client.handle_request(event.get('method'), 
+    try:
+        response = client.handle_request(event.get('method'),
                                          url,
-                                         event.get('headers'), 
+                                         event.get('headers'),
                                          event.get('body')
                                          )
 
@@ -40,8 +41,21 @@ def handle_request(event, context):
 
     except requests.Exception as e:
         logger.error("An error occurred while handling request", exc_info=True)
-        
+
         return {
             'statusCode': e.response.status_code,
             'body': e.response.text
         }
+
+request_input = {
+    'url': 'https://jsonplaceholder.typicode.com/todos/1',
+    'correlation_id': "1234567890",
+    'timeout': 10,
+    'retry_attempts': 3,
+    'method': 'GET',
+    'headers': {
+        'Content-Type': 'application/json'
+    }
+}
+
+local_handler(request_input)

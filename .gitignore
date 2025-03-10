@@ -171,4 +171,5 @@ cython_debug/
 .pypirc
 
 # Etc
-app/test_local.py
+localExec/test_local.py
+.idea
