@@ -2,7 +2,7 @@
 # generic-http-lambda-python 💻
 Small project of a generic http request maker. It receives a 'request input' and makes a request using parameter values.
 
-This code is meant to be used on a Lambda function. The handler input is an event with three main informations:
+This code is meant to be used on a Lambda function. The handler input is an event with these informations:
 
 - url;
 - http method;
